@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <span id="my-name">John Eckert</span>
+    <span id="my-job">Full Stack Developer</span>
     <vue-p5 @setup="setup" @draw="draw"></vue-p5>
   </div>
 </template>
@@ -34,7 +36,7 @@ export default {
     },
     setup(sketch) {
       sketch.createCanvas(this.width, this.height);
-      sketch.background(112, 128, 144);
+      sketch.background("rgba(112, 128, 144, 0)");
       sketch.stroke(0, 18);
       sketch.noFill();
     },
@@ -63,7 +65,32 @@ export default {
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css?family=Anonymous+Pro");
+
+body {
+  background-color: rgb(112, 128, 144);
+}
+
 #app {
   width: 100vw;
+  background-color: rgb(112, 128, 144);
+}
+
+#my-name {
+  position: absolute;
+  font-family: "Anonymous Pro", monospace;
+  font-size: 2rem;
+  color: rgb(112, 128, 144);
+  left: 40%;
+  top: 45%;
+}
+
+#my-job {
+  position: absolute;
+  font-family: "Anonymous Pro", monospace;
+  font-size: 1rem;
+  color: rgb(112, 128, 144);
+  left: 45%;
+  top: 50%;
 }
 </style>
