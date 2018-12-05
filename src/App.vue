@@ -2,7 +2,7 @@
   <div id="app">
     <span id="my-name">John Eckert</span>
     <span id="my-job">Full Stack Developer</span>
-    <vue-p5 @setup="setup" @draw="draw"></vue-p5>
+    <vue-p5 @setup="setup" @draw="draw" @mouseclicked="handleClick"></vue-p5>
   </div>
 </template>
 
@@ -18,7 +18,11 @@ export default {
     return {
       width: 0,
       height: 0,
-      t: 100
+      t: 700,
+      bgColor: "rgba(112, 128, 144, 0)",
+      strokeColor: 0,
+      strokeAlpha: 18, // 0 - 255
+      clicked: false
     };
   },
   created() {
@@ -36,8 +40,8 @@ export default {
     },
     setup(sketch) {
       sketch.createCanvas(this.width, this.height);
-      sketch.background("rgba(112, 128, 144, 0)");
-      sketch.stroke(0, 18);
+      sketch.background(this.bgColor);
+      sketch.stroke(this.strokeColor, this.strokeAlpha);
       sketch.noFill();
     },
     draw(sketch) {
@@ -54,12 +58,12 @@ export default {
 
       this.t += 0.5;
 
-      // clear the background every 500 frames using mod (%) operator
-      if (sketch.frameCount % 5000 == 0) {
-        //will it ever crash if I don't clear?
-        // sketch.background(112, 128, 144);
+      //stop drawing after 5000 frames
+      if (sketch.frameCount >= 5000) {
+        sketch.frameRate(0);
       }
-    }
+    },
+    handleClick() {}
   }
 };
 </script>
