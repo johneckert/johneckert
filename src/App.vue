@@ -45,12 +45,12 @@ export default {
       sketch.noFill();
     },
     draw(sketch) {
-      let x1 = this.width * sketch.noise(this.t + this.width * 0);
-      let x2 = this.width * sketch.noise(this.t + this.width * 5);
+      let x1 = this.width * sketch.noise(this.t + this.width * 70); // * 0 here will make it a diagonal
+      let x2 = this.width * sketch.noise(this.t + this.width * 20);
       let x3 = this.width * sketch.noise(this.t + this.width * 10);
-      let x4 = this.width * sketch.noise(this.t + this.width * 20);
-      let y1 = this.height * sketch.noise(this.t + this.height * 0);
-      let y2 = this.height * sketch.noise(this.t + this.height * 5);
+      let x4 = this.width * sketch.noise(this.t + this.width * 50);
+      let y1 = this.height * sketch.noise(this.t + this.height * 40); // * 0 here will make it a diagonal
+      let y2 = this.height * sketch.noise(this.t + this.height * 50);
       let y3 = this.height * sketch.noise(this.t + this.height * 10);
       let y4 = this.height * sketch.noise(this.t + this.height * 20);
 
@@ -59,7 +59,7 @@ export default {
       this.t += 0.5;
 
       //stop drawing after 5000 frames
-      if (sketch.frameCount >= 5000) {
+      if (sketch.frameCount >= 8000) {
         sketch.frameRate(0);
       }
     },
@@ -86,7 +86,7 @@ body {
   font-size: 2rem;
   color: rgb(112, 128, 144);
   left: 40%;
-  top: 45%;
+  top: 42%;
 }
 
 #my-job {
@@ -95,6 +95,6 @@ body {
   font-size: 1rem;
   color: rgb(112, 128, 144);
   left: 45%;
-  top: 50%;
+  top: 48%;
 }
 </style>
