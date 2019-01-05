@@ -1,18 +1,21 @@
 <template>
   <div id="app">
+    <link-area></link-area>
     <span id="my-name">John Eckert</span>
     <span id="my-job">Full Stack Developer</span>
-    <vue-p5 @setup="setup" @draw="draw" @mouseclicked="handleClick"></vue-p5>
+    <vue-p5 id="name-canvas" @setup="setup" @draw="draw" @mouseclicked="handleClick"></vue-p5>
   </div>
 </template>
 
 <script>
 import VueP5 from "vue-p5";
+import LinkArea from "@/components/Links.vue";
 
 export default {
   name: "app",
   components: {
-    vueP5: VueP5
+    vueP5: VueP5,
+    linkArea: LinkArea
   },
   data() {
     return {
@@ -77,6 +80,7 @@ export default {
 
 body {
   background-color: rgb(112, 128, 144);
+  overflow: hidden;
 }
 
 #app {
@@ -100,5 +104,9 @@ body {
   color: rgb(112, 128, 144);
   left: 44%;
   top: 48%;
+}
+
+links {
+  position: absolute;
 }
 </style>
