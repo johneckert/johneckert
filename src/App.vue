@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <link-area></link-area>
+    <link-area :width="width" :height="height"></link-area>
     <span id="my-name">John Eckert</span>
     <span id="my-job">Full Stack Developer</span>
     <vue-p5 id="name-canvas" @setup="setup" @draw="draw" @mouseclicked="handleClick"></vue-p5>
