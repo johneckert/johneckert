@@ -89,10 +89,6 @@ export default {
 
 
 <style>
-/* #link-canvas {
-  position: absolute;
-} */
-
 #link-canvas {
   width: 25vw;
   height: 90vh;
