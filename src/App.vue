@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <link-area :width="width" :height="height"></link-area>
+    <link-area :links="links"></link-area>
     <span id="my-name">John Eckert</span>
     <span id="my-job">Full Stack Developer</span>
     <vue-p5 id="name-canvas" @setup="setup" @draw="draw" @mouseclicked="handleClick"></vue-p5>
@@ -9,7 +9,7 @@
 
 <script>
 import VueP5 from "vue-p5";
-import LinkArea from "@/components/Links.vue";
+import LinkArea from "@/components/LinkArea.vue";
 
 export default {
   name: "app",
@@ -26,7 +26,21 @@ export default {
       bgColor: "rgba(112, 128, 144, 0)",
       strokeColor: 0,
       strokeAlpha: 18, // 0 - 255
-      clicked: false
+      clicked: false,
+      links: [
+        {
+          text: "lnik1",
+          linkUrl: "www.google.com"
+        },
+        {
+          text: "lnik2",
+          linkUrl: "www.github.com"
+        },
+        {
+          text: "lnik3",
+          linkUrl: "www.twitter.com"
+        }
+      ]
     };
   },
   created() {
@@ -104,9 +118,5 @@ body {
   color: rgb(112, 128, 144);
   left: 44%;
   top: 48%;
-}
-
-links {
-  position: absolute;
 }
 </style>
