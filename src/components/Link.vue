@@ -9,11 +9,6 @@ export default {
   name: "Link",
   props: {
     linkData: Object
-  },
-  computed: {},
-  methods: {},
-  mounted() {
-    console.log(this.url)
   }
 };
 </script>
