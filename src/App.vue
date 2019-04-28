@@ -36,36 +36,48 @@ export default {
       sideLinks: [
         {
           text: "GitHub",
+          icon: "github",
+          prefix: "fab",
           url: "https://github.com/johneckert"
         },
         {
           text: "LinkedIn",
+          icon: "linkedin",
+          prefix: "fab",
           url: "https://www.linkedin.com/in/johnteckert/"
         },
         {
           text: "Medium",
+          icon: "medium",
+          prefix: "fab",
           url: "https://medium.com/@johnteckert"
         },
         {
           text: "Email Me",
+          icon: "envelope",
+          prefix: "fas",
           url: "mailto:johnteckert@gmail.com"
         }
       ],
       bottomLinks: [
         {
           text: "Duckie",
+          icon: "",
           url: "https://duckie.herokuapp.com/"
         },
         {
           text: "Dr. Meowio",
+          icon: "",
           url: "http://dr-meowio.herokuapp.com/"
         },
         {
           text: "Magic 8 Ball",
+          icon: "",
           url: "https://johneckert.github.io/MagicEightBall/index"
         },
         {
           text: "Gusty",
+          icon: "",
           url: "https://itsgusty.herokuapp.com/"
         }
       ]
@@ -198,5 +210,14 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-top: 2em;
+}
+
+#bottom-links > .link {
+  margin: 2em;
+}
+
+#side-links > .link {
+  margin: 0.5em 2em;
 }
 </style>

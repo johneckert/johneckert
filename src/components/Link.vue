@@ -1,6 +1,9 @@
 <template>
   <li class="link">
-    <a :href="linkData.url" target="_blank">{{linkData.text}}</a>
+    <a :href="linkData.url" target="_blank">
+      <font-awesome-icon v-if="linkData.icon.length > 0" :icon="[linkData.prefix, linkData.icon]" size="2x"/>
+      <span v-else>{{linkData.text}}</span>
+    </a>
   </li>
 </template>
 
@@ -21,7 +24,7 @@ export default {
   color: #000000;
 }
 
-.link {
-  margin: 2em;
+.link > a:hover {
+  color: white;
 }
 </style>

@@ -23,7 +23,6 @@ export default {
 <style>
 .link-area {
   position: absolute;
-  /* bottom: 0; */
   list-style-type: none;
   display: flex;
   margin: 0;
