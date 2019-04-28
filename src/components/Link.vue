@@ -1,6 +1,6 @@
 <template>
   <li class="link">
-    <a href="linkUrl">{{text}}</a>
+    <a :href="linkData.url" target="_blank">{{linkData.text}}</a>
   </li>
 </template>
 
@@ -8,11 +8,13 @@
 export default {
   name: "Link",
   props: {
-    text: String,
-    url: String
+    linkData: Object
   },
   computed: {},
-  methods: {}
+  methods: {},
+  mounted() {
+    console.log(this.url)
+  }
 };
 </script>
 
