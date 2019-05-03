@@ -103,13 +103,19 @@ export default {
     centerNameH() {
       let areaWidth, autoCenter;
       areaWidth = this.$refs.nameArea ? this.$refs.nameArea.clientWidth : 0;
-      autoCenter = this.window.width / 2 - areaWidth + "px";
+      autoCenter = this.window.width / 2.5 - areaWidth + "px";
+      return autoCenter;
+    },
+    centerNameV() {
+      let areaHeight, autoCenter;
+      areaHeight = this.$refs.nameArea ? this.$refs.nameArea.clientheight : 0;
+      autoCenter = this.window.height / 2 - areaHeight + "px";
       return autoCenter;
     },
     centerLinksH() {
       let areaWidth, autoCenter;
       areaWidth = this.$refs.bottomLinks ? this.$refs.bottomLinks.clientWidth : 0;
-      autoCenter = this.window.width / 2 - areaWidth + "px";
+      autoCenter = this.window.width / 3 - areaWidth + "px";
       return autoCenter;
     },
     centerLinksV() {
@@ -132,8 +138,8 @@ export default {
     },
     namePos() {
       return {
-        left: this.centerLinksH(),
-        bottom: this.centerLinksV()
+        left: this.centerNameH(),
+        bottom: this.centerNameV()
       };
     },
     setup(sketch) {
