@@ -6,6 +6,7 @@
       <span id="my-name">John Eckert</span>
       <span id="my-job">Full Stack Developer</span>
     </div>
+    <!-- <project-tile :projectData="projects.duckie"></project-tile> -->
     <vue-p5 id="name-canvas" @setup="setup" @draw="draw" @mouseclicked="handleClick"></vue-p5>
   </div>
 </template>
@@ -13,12 +14,14 @@
 <script>
 import VueP5 from "vue-p5";
 import LinkArea from "@/components/LinkArea.vue";
+import ProjectTile from "@/components/ProjectTile.vue"
 
 export default {
   name: "app",
   components: {
     vueP5: VueP5,
-    linkArea: LinkArea
+    linkArea: LinkArea,
+    projectTile: ProjectTile
   },
   data() {
     return {
@@ -31,7 +34,8 @@ export default {
       t: 700,
       bgColor: "rgba(112, 128, 144, 0)",
       strokeColor: 0,
-      strokeAlpha: 18, // 0 - 255
+      strokeAlpha: 100, // 0 - 255,
+      strokeWeight: 4,
       clicked: false,
       sideLinks: [
         {
@@ -80,7 +84,22 @@ export default {
           icon: "",
           url: "https://itsgusty.herokuapp.com/"
         }
-      ]
+      ],
+      projects: {
+        duckie: {
+          name: "Duckie",
+          image: "",
+          tagLine: "Are you stuck? Talk to the duck!",
+          p1Title: "",
+          p1: "Duckie is a React app that uses the JavaScript Web Speech API and Watson’s Natural Language API to create a Rubber Duck Debugger that can help users to get unstuck and identify gaps in their knowledge.",
+          p2Title: "DASHBOARD",
+          p2: "After logging in, the user has access to their dashboard which displays the number of conversations that they have had with Duckie as well as a visual representation of the keywords that have been most frequent across all of their conversations. The size of each word's bubble is determined by the importance of the keyword.",
+          p3Title: "CONVERSATION",
+          p3: "On the conversation page, the user can click a button to begin their conversation with Duckie. As they talk, Duckie uses the Web Speech API to render a transcript of their conversation to the page. That transcript is also sent to the backend where the Watson Natural Language API is used to generate keywords. As new keywords are returned Duckie displays the five most relevant at the bottom of the conversation page, as well as coloring those words in the transcript to match their corresponding bubble.",
+          gitHub: "https://github.com/johneckert/duckie-frontend",
+          projLink: "https://duckie.herokuapp.com/"
+        }
+      }
     };
   },
   created() {
@@ -146,6 +165,7 @@ export default {
       sketch.createCanvas(this.window.width, this.window.height);
       sketch.background(this.bgColor);
       sketch.stroke(this.strokeColor, this.strokeAlpha);
+      sketch.strokeWeight(this.strokeWeight);
       sketch.noFill();
       sketch.frameRate(this.fr);
     },
@@ -184,6 +204,10 @@ body {
 #app {
   width: 100vw;
   background-color: rgb(112, 128, 144);
+}
+
+#name-canvas {
+  overflow: hidden;
 }
 
 #name-area {
