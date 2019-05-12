@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <link-area id="bottom-links" ref="bottomLinks" :links="bottomLinks" :position="bottomLinkPos()"></link-area>
-    <link-area id="side-links" ref="sideLinks" :links="sideLinks" :position="sideLinkPos()"></link-area>
+    <link-area id="bottom-links" ref="bottomLinks" :links="projects" :position="bottomLinkPos()" :popup="true"></link-area>
+    <link-area id="side-links" ref="sideLinks" :links="sideLinks" :position="sideLinkPos()" :popup="false"></link-area>
     <div id="name-area" ref="nameArea" :style="namePos()">
       <span id="my-name">John Eckert</span>
       <span id="my-job">Full Stack Developer</span>
@@ -30,12 +30,12 @@ export default {
         height: 0
       },
       nameAreaStyles: {},
-      fr: 100, //default is 60
+      fr: 150, //default is 60
       t: 700,
       bgColor: "rgba(112, 128, 144, 0)",
       strokeColor: 0,
       strokeAlpha: 100, // 0 - 255,
-      strokeWeight: 4,
+      strokeWeight: 1,
       clicked: false,
       sideLinks: [
         {
@@ -85,8 +85,8 @@ export default {
           url: "https://itsgusty.herokuapp.com/"
         }
       ],
-      projects: {
-        duckie: {
+      projects: [
+        {
           name: "Duckie",
           image: "",
           tagLine: "Are you stuck? Talk to the duck!",
@@ -99,7 +99,7 @@ export default {
           gitHub: "https://github.com/johneckert/duckie-frontend",
           projLink: "https://duckie.herokuapp.com/"
         }
-      }
+      ]
     };
   },
   created() {
