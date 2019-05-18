@@ -1,7 +1,7 @@
 <template>
   <li class="link">
     <span v-on:click="toggleHidden">{{projectData.name}}</span>
-    <div class="project-tile" :class="{hidden: hidden}">
+    <div class="project-tile" :class="{hidden: hidden, visible: !hidden}">
       <h1 v-on:click="toggleHidden" class="close-button">X</h1>
       <h1>{{projectData.name}}</h1>
       <img :src="projectData.image"/>
@@ -42,10 +42,6 @@ export default {
 </script>
 
 <style>
-  .hidden {
-    display: none;
-  }
-
   .close-button {
     font-family: "Anonymous Pro", monospace;
     font-size: 1rem;
@@ -77,12 +73,22 @@ export default {
     padding: 2rem;
     border: solid 1px black;
     overflow: hidden;
+  }
 
+  .visible {
     animation-duration: 1s;
     animation-name: tile-in;
     animation-iteration-count: 1;
     animation-direction: forwards;
-    animation-fill-mode: forwards;
+    animation-fill-mode: both;
+  }
+
+  .hidden {
+    animation-duration: 1s;
+    animation-name: tile-out;
+    animation-iteration-count: 1;
+    animation-direction: forwards;
+    animation-fill-mode: both;
   }
 
   .proj-links {
@@ -106,10 +112,30 @@ export default {
   @keyframes tile-in {
     0% {
       top: 110vh;
+      display: none;
+    }
+
+    10% {
+      top: 110vh;
     }
 
     100% {
       top: 10vh;
+    }
+  }
+
+  @keyframes tile-out {
+    0% {
+      top: 10vh;
+    }
+
+    90% {
+      top: 110vh;
+    }
+
+    100% {
+      top: 110vh;
+      display: none;
     }
   }
 

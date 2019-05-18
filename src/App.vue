@@ -98,6 +98,19 @@ export default {
           p3: "On the conversation page, the user can click a button to begin their conversation with Duckie. As they talk, Duckie uses the Web Speech API to render a transcript of their conversation to the page. That transcript is also sent to the backend where the Watson Natural Language API is used to generate keywords. As new keywords are returned Duckie displays the five most relevant at the bottom of the conversation page, as well as coloring those words in the transcript to match their corresponding bubble.",
           gitHub: "https://github.com/johneckert/duckie-frontend",
           projLink: "https://duckie.herokuapp.com/"
+        },
+        {
+          name: "Magic 8 Ball",
+          image: "",
+          tagLine: "Browser based Fortune Telling",
+          p1Title: "",
+          p1: "Magic 8 Ball is a re-creation of the classic toy made by Mattel. built using a combination of JQuery and CSS animations.",
+          p2Title: "",
+          p2: "",
+          p3Title: "",
+          p3: "",
+          gitHub: "https://github.com/johneckert/MagicEightBall",
+          projLink: "https://johneckert.github.io/MagicEightBall/index"
         }
       ]
     };
