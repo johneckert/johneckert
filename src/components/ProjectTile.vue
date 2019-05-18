@@ -13,8 +13,10 @@
         <p v-if="projectData.p2">{{projectData.p2}}</p>
         <h3 v-if="projectData.p3Title">{{projectData.p3Title}}</h3>
         <p v-if="projectData.p3">{{projectData.p3}}</p>
-        <a :href="projectData.gitHub">Github</a>
-        <a :href="projectData.projLink">Try it!</a>
+        <div class="proj-links">
+          <a :href="projectData.gitHub">Github</a>
+          <a :href="projectData.projLink">Try it!</a>
+        </div>
       </div>
     </div>
   </li>
@@ -69,13 +71,46 @@ export default {
   .project-tile {
     position: fixed;
     background-color: rgb(112, 128, 144);
-    top: 10vh;
     left: 10vw;
-    width: 80vw;
     height: 60vh;
+    width: 80vw;
     padding: 2rem;
     border: solid 1px black;
     overflow: hidden;
+
+    animation-duration: 1s;
+    animation-name: tile-in;
+    animation-iteration-count: 1;
+    animation-direction: forwards;
+    animation-fill-mode: forwards;
+  }
+
+  .proj-links {
+    float: right;
+  }
+
+  .project-tile .proj-links a {
+    margin-right: 50px;
+    text-decoration: none;
+    color: #000000;
+  }
+
+  .project-tile .proj-links a:visited {
+    color: #BAC0C8;
+  }
+
+  .project-tile .proj-links a:hover, .close-button:hover {
+    color: #ffffff;
+  }
+
+  @keyframes tile-in {
+    0% {
+      top: 110vh;
+    }
+
+    100% {
+      top: 10vh;
+    }
   }
 
 </style>
