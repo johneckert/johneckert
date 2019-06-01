@@ -14,6 +14,8 @@
           <p v-if="projectData.p2">{{projectData.p2}}</p>
           <h3 v-if="projectData.p3Title">{{projectData.p3Title}}</h3>
           <p v-if="projectData.p3">{{projectData.p3}}</p>
+          <h3 v-if="projectData.p4Title">{{projectData.p4Title}}</h3>
+          <p v-if="projectData.p4">{{projectData.p4}}</p>
           <div class="proj-links">
             <a :href="projectData.gitHub">Github</a>
             <a :href="projectData.projLink">Try it!</a>

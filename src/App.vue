@@ -20,8 +20,7 @@ export default {
   name: "app",
   components: {
     vueP5: VueP5,
-    linkArea: LinkArea,
-    projectTile: ProjectTile
+    linkArea: LinkArea
   },
   data() {
     return {
@@ -63,28 +62,6 @@ export default {
           url: "mailto:johnteckert@gmail.com"
         }
       ],
-      bottomLinks: [
-        {
-          text: "Duckie",
-          icon: "",
-          url: "https://duckie.herokuapp.com/"
-        },
-        {
-          text: "Dr. Meowio",
-          icon: "",
-          url: "http://dr-meowio.herokuapp.com/"
-        },
-        {
-          text: "Magic 8 Ball",
-          icon: "",
-          url: "https://johneckert.github.io/MagicEightBall/index"
-        },
-        {
-          text: "Gusty",
-          icon: "",
-          url: "https://itsgusty.herokuapp.com/"
-        }
-      ],
       projects: [
         {
           name: "Duckie",
@@ -111,6 +88,62 @@ export default {
           p3: "",
           gitHub: "https://github.com/johneckert/MagicEightBall",
           projLink: "https://johneckert.github.io/MagicEightBall/index"
+        },
+        {
+          name: "Dr. Meowio",
+          image: "",
+          tagLine: "Highly addictive classic tile matching game",
+          p1Title: "",
+          p1: "Dr. Meowio is a React game inspired by classics like Bejeweled and Dr. Mario. I constructed the back end API using Ruby on Rails and a PostgreSQL database. Before starting a game the user can choose to login and track their high score or play anonymosly.",
+          p2Title: "SOMETHING FOR EVERYBODY",
+          p2: "In order to customize the gaming experience, users can choose from multiple styles for the user interface which I created using custom CSS. I borrowed these cute cat cartoons from Sarah Sabole's Doctor Cat.",
+          p3Title: "",
+          p3: "",
+          gitHub: "https://github.com/johneckert/dr-meowio-frontend",
+          projLink: "http://dr-meowio.herokuapp.com/"
+        },
+        {
+          name: "Stage Door",
+          image: "",
+          tagLine: "Employment site that empowers users to negotiate from a position of knowledge by crowdsourcing company hiring data and tracking personal work history",
+          p1Title: "",
+          p1: "The Full MVC format of StageDoor was executed using Ruby on Rails. The front end was styled using a combination of Bootstrap and custom CSS and the Google Charts API was used to help visualize the data.",
+          p2Title: "USER DATA",
+          p2: "Users can view a record of all of their contracts. Google Charts helps visualize contract type, area of expertise and fee over time, in order to track past performance and identify payment and hiring trends.",
+          p3Title: "COMPANY DATA",
+          p3: "StageDoor aggregates all user data to provide information about hiring practices for individual companies. Users can view company data based on type of work, demographics and date, in order to decide how best to negotiate.",
+          gitHub: "https://github.com/johneckert/stagedoor",
+          projLink: "https://www.youtube.com/watch?v=iS5QUAysheo"
+        },
+        {
+          name: "Gusty",
+          image: "",
+          tagLine: "A Simple Weather App",
+          p1Title: "",
+          p1: "Gusty shows the weather in 5 different cities around the world. From the main page a user can get a quick overview of each city, or click on a specific city for more detailed information. Gusty was designed with scalability in mind. Adding more cities is as easy as adding their names to the initial state and creating skyline images for them.",
+          p2Title: "",
+          p2: "Gusty was built using React, Redux, and React-Router. While building Gusty, I focused on providing the user with as much information as possible, while keeping the UI simple and clean.",
+          p3Title: "",
+          p3: "On the main page, each city panel is updated based on current weather conditions to allow the user to compare all five cities at a glance. The temperature and an icon representing the current weather are displayed next to the title. At the same time each city’s background color is set based on the current weather conditions in that city.",
+          p4Title: "",
+          p4: "When a user clicks on a city they are taken to a detail page. The detail page provides the user with a 5 day forecast and a more detailed overview of the current weather.",
+          gitHub: "https://github.com/johneckert/Gusty",
+          projLink: "https://itsgusty.herokuapp.com/"
+        },
+        {
+          name: "SushiGo",
+          image: "",
+          tagLine: "A Quirky Sushi Recipe App",
+          p1Title: "",
+          p1: "Sushi Go is a simple React app that uses a backend built in Go. I originally started building it in order to teach myself Go, but since then it has become my demo site for exploring new concepts and writing blog posts.",
+          p2Title: "",
+          p2: "",
+          p3Title: "",
+          p3: "",
+          p4Title: "",
+          p4: "",
+          gitHub: "https://github.com/johneckert/blogpost",
+          projLink: "https://sushigo.herokuapp.com/"
         }
       ]
     };
@@ -147,7 +180,7 @@ export default {
     centerLinksH() {
       let areaWidth, autoCenter;
       areaWidth = this.$refs.bottomLinks ? this.$refs.bottomLinks.clientWidth : 0;
-      autoCenter = this.window.width / 3 - areaWidth + "px";
+      autoCenter = this.window.width / this.projects.length + "px";
       return autoCenter;
     },
     centerLinksV() {
