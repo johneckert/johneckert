@@ -1,28 +1,32 @@
 <template>
   <li class="link">
     <span v-on:click="toggleHidden">{{projectData.name}}</span>
-    <div class="project-tile" :class="{hidden: hidden, visible: !hidden}">
-      <h1 v-on:click="toggleHidden" class="close-button">X</h1>
-      <h1>{{projectData.name}}</h1>
-      <img :src="projectData.image"/>
-      <div class="body">
-        <h2>{{projectData.tagLine}}</h2>
-        <h3 v-if="projectData.p1Title">{{projectData.p1Title}}</h3>
-        <p v-if="projectData.p1">{{projectData.p1}}</p>
-        <h3 v-if="projectData.p2Title">{{projectData.p2Title}}</h3>
-        <p v-if="projectData.p2">{{projectData.p2}}</p>
-        <h3 v-if="projectData.p3Title">{{projectData.p3Title}}</h3>
-        <p v-if="projectData.p3">{{projectData.p3}}</p>
-        <div class="proj-links">
-          <a :href="projectData.gitHub">Github</a>
-          <a :href="projectData.projLink">Try it!</a>
+    <transition name="slide">
+      <div v-if="!hidden" class="project-tile">
+        <h1 v-on:click="toggleHidden" class="close-button">X</h1>
+        <h1>{{projectData.name}}</h1>
+        <img :src="projectData.image"/>
+        <div class="body">
+          <h2>{{projectData.tagLine}}</h2>
+          <h3 v-if="projectData.p1Title">{{projectData.p1Title}}</h3>
+          <p v-if="projectData.p1">{{projectData.p1}}</p>
+          <h3 v-if="projectData.p2Title">{{projectData.p2Title}}</h3>
+          <p v-if="projectData.p2">{{projectData.p2}}</p>
+          <h3 v-if="projectData.p3Title">{{projectData.p3Title}}</h3>
+          <p v-if="projectData.p3">{{projectData.p3}}</p>
+          <div class="proj-links">
+            <a :href="projectData.gitHub">Github</a>
+            <a :href="projectData.projLink">Try it!</a>
+          </div>
         </div>
       </div>
-    </div>
+      </transition>
   </li>
 </template>
 
 <script>
+
+//NEED TO MOVE TRANSITION TO OUTER COMPONENT AND GIVE EACH LINK A CLICKED PROP THAT USES V-IF TO RENDER TILE
 export default {
   name: "ProjectTile",
   props: {
@@ -73,22 +77,7 @@ export default {
     padding: 2rem;
     border: solid 1px black;
     overflow: hidden;
-  }
-
-  .visible {
-    animation-duration: 1s;
-    animation-name: tile-in;
-    animation-iteration-count: 1;
-    animation-direction: forwards;
-    animation-fill-mode: both;
-  }
-
-  .hidden {
-    animation-duration: 1s;
-    animation-name: tile-out;
-    animation-iteration-count: 1;
-    animation-direction: forwards;
-    animation-fill-mode: both;
+    top: 10vh;
   }
 
   .proj-links {
@@ -109,34 +98,18 @@ export default {
     color: #ffffff;
   }
 
-  @keyframes tile-in {
-    0% {
-      top: 110vh;
-      display: none;
-    }
+.slide-enter-active {
+  transition: 1s;
+}
 
-    10% {
-      top: 110vh;
-    }
+.slide-leave-active {
+  transition: 1s;
+}
 
-    100% {
-      top: 10vh;
-    }
-  }
-
-  @keyframes tile-out {
-    0% {
-      top: 10vh;
-    }
-
-    90% {
-      top: 110vh;
-    }
-
-    100% {
-      top: 110vh;
-      display: none;
-    }
-  }
-
+.slide-enter {
+  transform: translate(0, 200%);
+}
+.slide-leave-to {
+  transform: translate(0, 200%);
+}
 </style>

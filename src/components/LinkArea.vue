@@ -1,6 +1,6 @@
 <template>
   <ul v-if="popup" class="link-area" ref="linkArea" :style="position">
-    <project-tile v-for="(link, i) in links" :projectData="link" :key="i"/>
+    <project-tile v-for="(link, i) in links" :projectData="link" :key="i" />
   </ul>
   <ul v-else class="link-area" ref="linkArea" :style="position">
     <link-item v-for="(link, i) in links" :linkData="link" :key="i"/>
