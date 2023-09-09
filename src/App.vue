@@ -48,9 +48,17 @@ export default {
       fr: 150, //default is 60
       t: 700,
       bgColor: "rgba(112, 128, 144, 0)",
-      strokeColor: 0,
-      strokeAlpha: 100, // 0 - 255,
-      strokeWeight: 1,
+      strokeColors: [
+        "#67aec4",
+        "#675682",
+        "#5f0f4e",
+        "#e52a6f",
+        "#4a4646",
+        "#27a284",
+        "#dd9933"
+      ],
+      strokeAlpha: 255, // 0 - 255,
+      strokeWeight: 3,
       clicked: false,
       sideLinks: [
         {
@@ -115,6 +123,12 @@ export default {
       this.window.width = window.innerWidth;
       this.window.height = window.innerHeight;
     },
+    randomColor() {
+      const randomIndex = Math.floor(
+        Math.random(0, this.strokeColors.length) * 10
+      );
+      return this.strokeColors[randomIndex];
+    },
     centerNameH() {
       let areaWidth, autoCenter;
       areaWidth = this.$refs.nameArea ? this.$refs.nameArea.clientWidth : 0;
@@ -164,23 +178,25 @@ export default {
     setup(sketch) {
       sketch.createCanvas(this.window.width, this.window.height);
       sketch.background(this.bgColor);
-      sketch.stroke(this.strokeColor, this.strokeAlpha);
+      sketch.stroke(this.randomColor());
       sketch.strokeWeight(this.strokeWeight);
       sketch.noFill();
       sketch.frameRate(this.fr);
     },
     draw(sketch) {
       let x1, y1, x2, y2, x3, y3, x4, y4;
-      x1 = this.window.width * sketch.noise(this.t + this.window.width * 70); // * 0 here will make it a diagonal
-      y1 = this.window.height * sketch.noise(this.t + this.window.height * 40); // * 0 here will make it a diagonal
-      x2 = this.window.width * sketch.noise(this.t + this.window.width * 20);
+      x1 = this.window.width * sketch.noise(this.t + this.window.width * 10); // * 0 here will make it a diagonal
+      y1 = this.window.height * sketch.noise(this.t + this.window.height * 50); // * 0 here will make it a diagonal
+      x2 = this.window.width * sketch.noise(this.t + this.window.width * 10);
       y2 = this.window.height * sketch.noise(this.t + this.window.height * 50);
-      x3 = this.window.width * sketch.noise(this.t + this.window.width * 80);
-      y3 = this.window.height * sketch.noise(this.t + this.window.height * 10);
+      x3 = this.window.width * sketch.noise(this.t + this.window.width * 50);
+      y3 = this.window.height * sketch.noise(this.t + this.window.height * 50);
       x4 = this.window.width * sketch.noise(this.t + this.window.width * 50);
-      y4 = this.window.height * sketch.noise(this.t + this.window.height * 20);
+      y4 = this.window.height * sketch.noise(this.t + this.window.height * 50);
 
       sketch.bezier(x1, y1, x2, y2, x3, y3, x4, y4);
+
+      sketch.stroke(this.randomColor());
 
       this.t += 0.5;
       //stop drawing after 5000 frames
@@ -197,13 +213,14 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Anonymous+Pro");
 
 body {
-  background-color: rgb(112, 128, 144);
+  background-color: rgb(249, 246, 238);
   overflow: hidden;
 }
 
 #app {
   width: 100vw;
-  background-color: rgb(112, 128, 144);
+  background-color: rgb(249, 246, 238);
+  /*background-color: rgb(112, 128, 144);*/
 }
 
 #name-canvas {
@@ -220,14 +237,14 @@ body {
 
 #my-name {
   font-family: "Anonymous Pro", monospace;
-  font-size: 2rem;
-  color: rgb(112, 128, 144);
+  font-size: 3rem;
+  color: rgb(249, 246, 238);
 }
 
 #my-job {
   font-family: "Anonymous Pro", monospace;
-  font-size: 1rem;
-  color: rgb(112, 128, 144);
+  font-size: 2rem;
+  color: rgb(249, 246, 238);
 }
 
 #bottom-links {

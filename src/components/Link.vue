@@ -23,11 +23,12 @@ export default {
 <style>
 .link > a {
   font-family: "Anonymous Pro", monospace;
-  font-size: 1rem;
+  font-size: 1.3rem;
+  text-decoration: none;
   color: #000000;
 }
 
 .link > a:hover {
-  color: white;
+  color: #e52a6f;
 }
 </style>
