@@ -1,8 +1,12 @@
 <template>
   <li class="link">
     <a :href="linkData.url" target="_blank">
-      <font-awesome-icon v-if="linkData.icon.length > 0" :icon="[linkData.prefix, linkData.icon]" size="2x"/>
-      <span v-else>{{linkData.text}}</span>
+      <font-awesome-icon
+        v-if="!!linkData.icon"
+        :icon="[linkData.prefix, linkData.icon]"
+        size="2x"
+      />
+      <span v-else>{{ linkData.text }}</span>
     </a>
   </li>
 </template>
@@ -15,7 +19,6 @@ export default {
   }
 };
 </script>
-
 
 <style>
 .link > a {

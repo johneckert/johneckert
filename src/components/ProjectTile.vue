@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     toggleHidden: function() {
-      this.hidden = !this.hidden
+      this.hidden = !this.hidden;
     }
   }
 };

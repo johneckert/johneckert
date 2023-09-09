@@ -9,7 +9,7 @@
 
 <script>
 import Link from "@/components/Link.vue";
-import ProjectTile from "@/components/ProjectTile.vue"
+import ProjectTile from "@/components/ProjectTile.vue";
 
 export default {
   name: "LinkArea",
@@ -24,7 +24,6 @@ export default {
   }
 };
 </script>
-
 
 <style>
 .link-area {
