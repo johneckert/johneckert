@@ -4,27 +4,21 @@
       id="bottom-links"
       ref="bottomLinks"
       :links="projects"
-      :position="bottomLinkPos()"
       :popup="false"
+      :position="position.bottom"
     ></link-area>
     <link-area
       id="side-links"
       ref="sideLinks"
       :links="sideLinks"
-      :position="sideLinkPos()"
       :popup="false"
+      :position="position.side"
     ></link-area>
-    <div id="name-area" ref="nameArea" :style="namePos()">
-      <span id="my-name">John Eckert</span>
-      <span id="my-job">Full Stack Developer</span>
+    <div id="name-area" ref="nameArea">
+      <span id="my-name">Dumb Shit</span>
+      <span id="my-job">by John Eckert</span>
     </div>
-    <!-- <project-tile :projectData="projects.duckie"></project-tile> -->
-    <vue-p5
-      id="name-canvas"
-      @setup="setup"
-      @draw="draw"
-      @mouseclicked="handleClick"
-    ></vue-p5>
+    <vue-p5 id="name-canvas" @setup="setup" @draw="draw"></vue-p5>
   </div>
 </template>
 
@@ -44,22 +38,29 @@ export default {
         width: 0,
         height: 0
       },
+      position: {
+        side: "side",
+        bottom: "bottom"
+      },
       nameAreaStyles: {},
-      fr: 150, //default is 60
-      t: 700,
+      fr: 400, //default is 60
+      xTitle: -4000,
+      xLink: 7000,
+      yLink: -5000,
       bgColor: "rgba(112, 128, 144, 0)",
       strokeColors: [
-        "#67aec4",
-        "#675682",
-        "#5f0f4e",
-        "#e52a6f",
-        "#4a4646",
-        "#27a284",
-        "#dd9933"
+        "#05878a", // light teal
+        "#074e67", // dark teal
+        "#5a175d", // magenta 1
+        "#67074e", // magenta 2
+        "#dd9933", // saffron
+        "#bfcf45", // mello yellow
+        "#ec0faa", // hot pink
+        "#2bf618" // lime
       ],
+      barColor: "#393D47", // dark grey
       strokeAlpha: 255, // 0 - 255,
-      strokeWeight: 3,
-      clicked: false,
+      strokeWeight: 6,
       sideLinks: [
         {
           text: "GitHub",
@@ -114,97 +115,83 @@ export default {
   destroyed() {
     window.removeEventListener("resize", this.handleResize);
   },
-  mounted() {
-    this.centerLinksH();
-    this.centerLinksV();
-  },
   methods: {
     handleResize() {
       this.window.width = window.innerWidth;
       this.window.height = window.innerHeight;
     },
     randomColor() {
-      const randomIndex = Math.floor(
-        Math.random(0, this.strokeColors.length) * 10
-      );
+      const randomIndex = Math.floor(Math.random() * this.strokeColors.length);
       return this.strokeColors[randomIndex];
     },
-    centerNameH() {
-      let areaWidth, autoCenter;
-      areaWidth = this.$refs.nameArea ? this.$refs.nameArea.clientWidth : 0;
-      autoCenter = this.window.width / 2.5 - areaWidth + "px";
-      return autoCenter;
-    },
-    centerNameV() {
-      let areaHeight, autoCenter;
-      areaHeight = this.$refs.nameArea ? this.$refs.nameArea.clientheight : 0;
-      autoCenter = this.window.height / 2 - areaHeight + "px";
-      return autoCenter;
-    },
-    centerLinksH() {
-      let areaWidth, autoCenter;
-      areaWidth = this.$refs.bottomLinks
-        ? this.$refs.bottomLinks.clientWidth
-        : 0;
-      autoCenter = this.window.width / this.projects.length + "px";
-      return autoCenter;
-    },
-    centerLinksV() {
-      let areaHeight, autoCenter;
-      areaHeight = this.$refs.bottomLinks
-        ? this.$refs.bottomLinks.clientHeight
-        : 0;
-      autoCenter = this.window.height / 2 - areaHeight + "px";
-      return autoCenter;
-    },
-    sideLinkPos() {
-      return {
-        top: 0,
-        right: 0
-      };
-    },
-    bottomLinkPos() {
-      return {
-        left: this.centerLinksH(),
-        bottom: 0
-      };
-    },
-    namePos() {
-      return {
-        left: this.centerNameH(),
-        bottom: this.centerNameV()
-      };
-    },
     setup(sketch) {
+      let randomColor = this.randomColor();
       sketch.createCanvas(this.window.width, this.window.height);
       sketch.background(this.bgColor);
-      sketch.stroke(this.randomColor());
+      sketch.stroke(randomColor);
       sketch.strokeWeight(this.strokeWeight);
-      sketch.noFill();
+      sketch.fill(randomColor);
       sketch.frameRate(this.fr);
     },
     draw(sketch) {
-      let x1, y1, x2, y2, x3, y3, x4, y4;
-      x1 = this.window.width * sketch.noise(this.t + this.window.width * 10); // * 0 here will make it a diagonal
-      y1 = this.window.height * sketch.noise(this.t + this.window.height * 50); // * 0 here will make it a diagonal
-      x2 = this.window.width * sketch.noise(this.t + this.window.width * 10);
-      y2 = this.window.height * sketch.noise(this.t + this.window.height * 50);
-      x3 = this.window.width * sketch.noise(this.t + this.window.width * 50);
-      y3 = this.window.height * sketch.noise(this.t + this.window.height * 50);
-      x4 = this.window.width * sketch.noise(this.t + this.window.width * 50);
-      y4 = this.window.height * sketch.noise(this.t + this.window.height * 50);
+      let x1, y, x2;
+      x1 = Math.random() * this.window.width - Math.random() * 500;
+      x2 = x1 + Math.random() * this.window.width;
+      y = this.window.height * Math.random();
 
-      sketch.bezier(x1, y1, x2, y2, x3, y3, x4, y4);
+      sketch.line(x1, y, x2, y);
 
-      sketch.stroke(this.randomColor());
+      sketch.stroke(this.barColor);
+      sketch.fill(this.barColor);
 
-      this.t += 0.5;
-      //stop drawing after 5000 frames
-      if (sketch.frameCount >= 8000) {
-        sketch.frameRate(0);
+      // title rectangle
+      let titleRectWidth = 800;
+      let titleRectHeight = 100;
+
+      sketch.rect(
+        this.xTitle,
+        this.window.height * 0.65,
+        titleRectWidth,
+        titleRectHeight
+      );
+
+      if (this.xTitle < -10) {
+        this.xTitle += 10;
       }
-    },
-    handleClick() {}
+
+      // bottom links rectangle
+      let bottomLinkRectWidth = 1200;
+      let bottomLinkRectHeight = 75;
+      sketch.rect(
+        this.xLink,
+        this.window.height * 0.8,
+        bottomLinkRectWidth,
+        bottomLinkRectHeight
+      );
+
+      if (this.xLink > this.window.width - bottomLinkRectWidth) {
+        this.xLink -= 10;
+      }
+
+      // side links rectangle
+      let sideLinkRectWidth = 75;
+      let sideLinkRectHeight = 500;
+      sketch.rect(
+        this.window.width * 0.9,
+        this.yLink,
+        sideLinkRectWidth,
+        sideLinkRectHeight
+      );
+
+      if (this.yLink < -10) {
+        this.yLink += 10;
+      }
+
+      // set color for next loop
+      let randomColor = this.randomColor();
+      sketch.stroke(randomColor);
+      sketch.fill(randomColor);
+    }
   }
 };
 </script>
@@ -215,12 +202,14 @@ export default {
 body {
   background-color: rgb(249, 246, 238);
   overflow: hidden;
+  margin: 0;
 }
 
 #app {
   width: 100vw;
+  height: 100vh;
+  position: absolute;
   background-color: rgb(249, 246, 238);
-  /*background-color: rgb(112, 128, 144);*/
 }
 
 #name-canvas {
@@ -233,6 +222,9 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  left: 20%;
+  top: 65%;
+  padding-top: 8px;
 }
 
 #my-name {
@@ -245,26 +237,5 @@ body {
   font-family: "Anonymous Pro", monospace;
   font-size: 2rem;
   color: rgb(249, 246, 238);
-}
-
-#bottom-links {
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-#side-links {
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding-top: 2em;
-}
-
-#bottom-links > .link {
-  margin: 2em;
-}
-
-#side-links > .link {
-  margin: 0.5em 2em;
 }
 </style>
